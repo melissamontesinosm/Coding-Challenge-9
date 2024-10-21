@@ -23,3 +23,30 @@ class Book { //Define a Class
 };
 
 
+// Task 2: Create a Section Class
+
+class Section { // Define a class
+    constructor(name) { // Included Parameters
+        this.name = name;
+        this.books = [];
+    };
+
+    addBook(book) { // Add a book in books array
+        if (book instanceof Book){ 
+            this.books.push(book);
+        }
+        else{
+            console.log("Error"); // No action = Error
+    };
+    };
+     
+    getAvailableBooks() { // Return total number of available books 
+        return this.books.filter(book => book.isAvailable).length;
+    };
+
+    listBooks() {
+        return this.books.map(book => `${book.title} - ${book.isAvailable} ? 'Available' : 'Borrowed'}`).join('\n');
+    }
+}
+
+
