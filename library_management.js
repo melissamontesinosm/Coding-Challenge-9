@@ -48,10 +48,12 @@ class Section { // Define a class
         return this.books.map(book => `${book.title} - ${book.isAvailable} ? 'Available' : 'Borrowed'}`).join('\n'); // Using a ternary operator to identify availability
     };
 
+  // Task 5: Handle Books Borrowing and Returning
     calculateTotalBooksAvailable() {
         return this.books.reduce((total, book) => total + (book.isAvailable ? 1 : 0), 0); // Using a function and ternary operator to calculate total number of books
     };
 };
+
 
 // Task 3: Create a Patron Class
 
@@ -83,6 +85,7 @@ class Patron { // Define a class
     };
 };
 
+
 // Task 4: Create a VIPPatron Class that Inherits from Patron
 
 class VIPPatron extends Patron { // Define a class inherited from class
@@ -100,5 +103,42 @@ class VIPPatron extends Patron { // Define a class inherited from class
 };
 
 
+// Task 6: Create and Manage Sections and Patrons
+
+//Create Sections
+const romance = new Section("Romance"); 
+const self = new Section("Self-help");
+
+//Create Books
+const book1 = new Book("The Courage to be Disliked", "Ichiro Kishimi", "0501331722");
+const book2 = new Book( "Atomic Habits", "James Clear", "1722108824");
+const book3 = new Book("How to Win Friends and Influence People", "Dale Carnegie", "05555555555");
+const book4 = new Book("Everything I Know About Love", "Dolly Alderton", "0123456789");
+
+//Add books to sections
+self.addBook(book1);
+self.addBook(book2);
+self.addBook(book3);
+romance.addBook(book4);
+
+//Create Patrons
+const regularPatron = new Patron ("Marissa Cooper"); 
+const vipPatron = new VIPPatron("Summer Robe", true);
+
+//Regular patron tries to borrow a book
+regularPatron.borrowBook(book1);
+
+//VIP Patron tries to borrow a book
+vipPatron.borrowBook(book1);
+
+//Return the book
+regularPatron.returnBook(book1);
+
+//List books and availability 
+console.log(fiction.listBooks());
+
+//Used to calculate and display total available books in each section 
+console.log(`Total available books in Romance: ${fiction.calculateTotalBooksAvailable()}`);
+console.log(`Total available books in Self-help: ${science.calculateTotalBooksAvailable()}`);
 
 
