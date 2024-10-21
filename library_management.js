@@ -47,11 +47,15 @@ class Section { // Define a class
     listBooks() { // List all books in the section with title and availability
         return this.books.map(book => `${book.title} - ${book.isAvailable} ? 'Available' : 'Borrowed'}`).join('\n'); // Using a ternary operator to identify availability
     };
+
+    calculateTotalBooksAvailable() {
+        return this.books.reduce((total, book) => total + (book.isAvailable ? 1 : 0), 0); // Using a function and ternary operator to calculate total number of books
+    };
 };
 
 // Task 3: Create a Patron Class
 
-class Patron {
+class Patron { // Define a class
     constructor(name) {
         this.name = name;
         this.borrowedBooks = [];
