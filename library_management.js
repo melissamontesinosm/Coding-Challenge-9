@@ -45,7 +45,10 @@ class Section { // Define a class
     };
 
     listBooks() { // List all books in the section with title and availability
-        return this.books.map(book => `${book.title} - ${book.isAvailable} ? 'Available' : 'Borrowed'}`).join('\n'); // Using a ternary operator to identify availability
+        return this.books.map (book => ({ //Reiterating each book's title and availability
+            title: book.title,
+            available: book.isAvailable
+            }));
     };
 
   // Task 5: Handle Books Borrowing and Returning
@@ -95,11 +98,14 @@ class VIPPatron extends Patron { // Define a class inherited from class
     }
 
     borrowBook(book) { // To prioritize borrowing in case of competition with regular patrons
-        if(this.priority) {
-            console.log(`${this.name} (VIP) has priority to borrow "${book.title}"`); // Display message
-        }
-        super.borrowBook(book); // To call the bowworBook method from the Patron class
-    };
+        if (book.isAvailable) { 
+            book.isAvailable = false; // Used if else function to display message if book is not avaialbe
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} has priority to borrow "${book.title}"`); // Display message
+        } else {
+            console.log(` "${book.title}" is not available.`); // If not display message
+        };
+    }
 };
 
 
@@ -135,7 +141,7 @@ vipPatron.borrowBook(book1);
 regularPatron.returnBook(book1);
 
 //List books and availability 
-console.log(fiction.listBooks());
+console.log(self.listBooks());
 
 //Used to calculate and display total available books in each section 
 console.log(`Total available books in Romance: ${romance.calculateTotalBooksAvailable()}`);
