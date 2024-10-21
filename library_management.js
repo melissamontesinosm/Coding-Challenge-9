@@ -138,7 +138,7 @@ regularPatron.returnBook(book1);
 console.log(fiction.listBooks());
 
 //Used to calculate and display total available books in each section 
-console.log(`Total available books in Romance: ${fiction.calculateTotalBooksAvailable()}`);
-console.log(`Total available books in Self-help: ${science.calculateTotalBooksAvailable()}`);
+console.log(`Total available books in Romance: ${romance.calculateTotalBooksAvailable()}`);
+console.log(`Total available books in Self-help: ${self.calculateTotalBooksAvailable()}`);
 
 
